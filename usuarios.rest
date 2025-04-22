@@ -4,8 +4,8 @@ POST {{baseURL}}/usuarios
 Content-Type: application/json
 
 {
- "nome": "Carlos",
- "idade": 28
+ "nome": "Carlo",
+ "nickname": "carlinho999"
 }
 
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
  "nome": "Carlos Silva",
- "idade": 29
+ "nickname": "calinhos89"
 }
 
 ### 4. Testar a rota DELETE /usuarios/:id (DELETE)

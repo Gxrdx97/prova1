@@ -4,7 +4,7 @@ const connection = require("../config/db");
 
 
 // Rota para listar todos os usuários (READ)
-router.get("/usuarios", (req, res) => {
+router.get("/", (req, res) => {
     connection.query("SELECT * FROM pontuacoes", (err, results) => {
         if (err) {
             res.status(500).send("Erro ao buscar usuários");
@@ -20,7 +20,7 @@ router.get("/usuarios", (req, res) => {
 
 
 // Rota para adicionar um novo usuário (CREATE)
-router.post("/usuarios", (req, res) => {
+router.post("/", (req, res) => {
     const { jogoid, jogadorid,pontuacao,data_registro } = req.body;
     const sql = "INSERT INTO pontuacoes (jogo_id, jogador_id,pontuacao,data_registro) VALUES (?, ?)";
     connection.query(sql, [jogoid, jogadorid,pontuacao,data_registro], (err, results) => {
@@ -33,7 +33,7 @@ router.post("/usuarios", (req, res) => {
     });
 });
 // Rota para atualizar um usuário (UPDATE)
-router.put("/usuarios/:id", (req, res) => {
+router.put("//:id", (req, res) => {
     const { id } = req.params;
     const { nome, nickname } = req.body;
     const sql = "UPDATE pontuacoes SET nome = ?, nickname = ? WHERE id = ?";
@@ -51,7 +51,7 @@ router.put("/usuarios/:id", (req, res) => {
     });
 });
 // Rota para deletar um usuário (DELETE)
-router.delete("/usuarios/:id", (req, res) => {
+router.delete("//:id", (req, res) => {
     const { id } = req.params;
     const sql = "DELETE FROM pontuacoes WHERE id = ?";
     connection.query(sql, [id], (err, results) => {

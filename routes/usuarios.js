@@ -6,7 +6,7 @@ const connection = require("../config/db");
 
 
 // Rota para listar todos os usuários (READ)
-router.get("/usuarios", (req, res) => {
+router.get("/", (req, res) => {
     connection.query("SELECT * FROM jogadores", (err, results) => {
         if (err) {
             res.status(500).send("Erro ao buscar usuários");
@@ -22,7 +22,7 @@ router.get("/usuarios", (req, res) => {
 
 
 // Rota para adicionar um novo usuário (CREATE)
-router.post("/usuarios", (req, res) => {
+router.post("/", (req, res) => {
     const { nome, nickname } = req.body;
     const sql = "INSERT INTO jogadores (nome, nickname) VALUES (?, ?)";
     connection.query(sql, [nome, nickname], (err, results) => {
@@ -35,7 +35,7 @@ router.post("/usuarios", (req, res) => {
     });
 });
 // Rota para atualizar um usuário (UPDATE)
-router.put("/usuarios/:id", (req, res) => {
+router.put("/:id", (req, res) => {
     const { id } = req.params;
     const { nome, nickname } = req.body;
     const sql = "UPDATE jogadores SET nome = ?, nickname = ? WHERE id = ?";
@@ -53,7 +53,7 @@ router.put("/usuarios/:id", (req, res) => {
     });
 });
 // Rota para deletar um usuário (DELETE)
-router.delete("/usuarios/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params;
     const sql = "DELETE FROM jogadores WHERE id = ?";
     connection.query(sql, [id], (err, results) => {
@@ -70,3 +70,4 @@ router.delete("/usuarios/:id", (req, res) => {
     });
 });
 module.exports = router;
+     
